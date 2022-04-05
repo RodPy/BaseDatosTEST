@@ -9,3 +9,7 @@ _Rodney Rojas_
 ## Sense HAT
 
 https://www.raspberrypi.com/documentation/accessories/sense-hat.html
+
+
+### PASS
+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
