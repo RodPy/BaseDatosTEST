@@ -2,18 +2,14 @@ import sqlite3
 from sqlite3 import Error
 
 database = "/home/pi/Desktop/BD/TEST_May_2022.db"
-
-def CreacionTablaUser()
-
-    conn=squite  
-
+ 
 def create_DB():
-    conn= sqlite3.connect('/home/pi/Desktop/BD/TEST_May_2022.db')
+    conn= sqlite3.connect(database)
     conn.commit()
     conn.close()
 
 def create_table_User():
-    conn= sqlite3.connect('/home/pi/Desktop/BD/TEST_May_2022.db')
+    conn= sqlite3.connect(database)
     cur=conn.cursor()
     try:
         cur.execute("""CREATE TABLE "User" (
@@ -29,7 +25,7 @@ def create_table_User():
         pass
 
 def create_table_Nodo():
-    conn= sqlite3.connect('/home/pi/Desktop/BD/TEST_May_2022.db')
+    conn= sqlite3.connect(database)
     cur=conn.cursor()
     try:
         cur.execute(""" CREATE TABLE "Nodo" (
@@ -45,7 +41,7 @@ def create_table_Nodo():
         pass
 
 def create_table_Sensor():
-    conn= sqlite3.connect('/home/pi/Desktop/BD/TEST_May_2022.db')
+    conn= sqlite3.connect(database)
     cur=conn.cursor()
     try:
         cur.execute(""" CREATE TABLE "Sensor" (
@@ -157,6 +153,6 @@ if __name__== "__main__":
     # readOrder("nombre","User")
     # search("User","nombre='Isidro'")
     # search("User","nombre like 'isidro'")
-    TraerDatos("User")
-    actualizar("User","nombre like 'isidro'","nombre='PedroAC'")
-    TraerDatos("User")
+    # TraerDatos("User")
+    # actualizar("User","nombre like 'isidro'","nombre='PedroAC'")
+    # TraerDatos("User")
