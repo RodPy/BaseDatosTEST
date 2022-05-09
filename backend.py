@@ -80,13 +80,24 @@ def inserUsers(userList):
 def insertSensor(humedad,temperatura,idNodo):
     conn= sqlite3.connect(database)
     #cur.execute("INSERT INTO Sensor(fecha,humedad,temperatura,idNodo) VALUES(datetime('now','localtime'),?,?,2)",(humedad,temperatura))
-    comando="INSERT INTO Sensor(fecha,humedad,temperatura,idNodo) VALUES(datetime('now','localtime'),?,?,2)"
+    comando="INSERT INTO Sensor(fecha,humedad,temperatura,idNodo) VALUES(datetime('now','localtime'),?,?,?)"
 
     cur =conn.cursor()
-    cur.execute(comando,(humedad,temperatura))
+    cur.execute(comando,(humedad,temperatura,idNodo))
     conn.commit()
     conn.close()
 
+def insertNodo(nombre,idUser):
+    conn= sqlite3.connect(database)
+
+    #cur.execute("INSERT INTO Sensor(fecha,humedad,temperatura,idNodo) VALUES(datetime('now','localtime'),?,?,2)",(humedad,temperatura))
+    comando="INSERT INTO Sensor(nombre,idUser) VALUES(?,?)"
+
+    cur =conn.cursor()
+    cur.execute(comando,(nombre,idUser))
+    conn.commit()
+    conn.close()
+    
 def TraerDatos(tabla):
     conn= sqlite3.connect(database)
     cur =conn.cursor()
