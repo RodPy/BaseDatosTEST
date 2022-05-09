@@ -55,17 +55,28 @@ except Error:
 #cur.execute("INSERT INTO Nodo(nombre,idUser) VALUES(?,?)",("ASU1",1))
 
 # while True:
-#     temperatura = sense.temperature
-#     humedad= sense.humidity
-#     cur.execute("INSERT INTO Sensor(fecha,humedad,temperatura,idNodo) VALUES(datetime('now','localtime'),?,?,2)",(humedad,temperatura))
+# #     temperatura = sense.temperature
+# #     humedad= sense.humidity
+#     temperatura = round(sense.temperature, 2)
+#     humedad= round(sense.humidity,2)
+
+    cur.execute("INSERT INTO Sensor(fecha,humedad,temperatura,idNodo) VALUES(datetime('now','localtime'),?,?,2)",(humedad,temperatura))
 #     conn.commit()
 #     print("Datos cargados")
 #     time.sleep(5)
 
 
-medicion = cur.execute("SELECT * FROM Sensor")
-print(type(medicion))
-for i in medicion:
-    print("fecha " , i[1])
-    print("humedad " , i[2])
-    print("temperatura" , i[3])
+# medicion = cur.execute("SELECT * FROM Sensor")
+# print(type(medicion))
+# for i in medicion:
+#     print("Lectura:"        +i[0])
+#     print("Fecha: "         +i[1])
+#     print("Temperatura: "   +i[3])
+#     print("Nodo ID: "       +i[4])
+#     print("")
+
+cur.execute("SELECT * FROM Sensor")
+row = cur.fetchone()
+while row is not None:
+  print(row)
+  row = cur.fetchone()
