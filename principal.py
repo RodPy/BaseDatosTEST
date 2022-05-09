@@ -1,6 +1,6 @@
 import sqlite3
 import backend as bk
-# from sense_hat import SenseHat
+from sense_hat import SenseHat
 
 import time
 

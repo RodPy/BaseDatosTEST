@@ -63,6 +63,7 @@ def insertUser(nombre,contrasena,correo):
     cur =conn.cursor()
     cur.execute(comando,(nombre,contrasena,correo))
     conn.commit()
+    print("Usuario creado")
     conn.close()
 
 def inserUsers(userList):
@@ -71,27 +72,29 @@ def inserUsers(userList):
     cur =conn.cursor()
     cur.executemany(comando,userList)
     conn.commit()
+    print("Usuario creado")
     conn.close()
     
 def insertSensor(humedad,temperatura,idNodo):
     conn= sqlite3.connect(database)
     #cur.execute("INSERT INTO Sensor(fecha,humedad,temperatura,idNodo) VALUES(datetime('now','localtime'),?,?,2)",(humedad,temperatura))
     comando="INSERT INTO Sensor(fecha,humedad,temperatura,idNodo) VALUES(datetime('now','localtime'),?,?,?)"
-
     cur =conn.cursor()
     cur.execute(comando,(humedad,temperatura,idNodo))
     conn.commit()
+    print("Nodo Sensor")
+
     conn.close()
 
 def insertNodo(nombre,idUser):
     conn= sqlite3.connect(database)
 
     #cur.execute("INSERT INTO Sensor(fecha,humedad,temperatura,idNodo) VALUES(datetime('now','localtime'),?,?,2)",(humedad,temperatura))
-    comando="INSERT INTO Sensor(nombre,idUser) VALUES(?,?)"
-
+    comando="INSERT INTO Nodo(nombre,idUser) VALUES(?,?)"
     cur =conn.cursor()
     cur.execute(comando,(nombre,idUser))
     conn.commit()
+    print("Nodo creado")
     conn.close()
     
 def TraerDatos(tabla):
@@ -113,6 +116,7 @@ def readOrder(data,tabla):
     cur.execute(comando)
     datos=cur.fetchall()
     conn.commit()
+    
     conn.close()
     print(datos)
 
@@ -156,3 +160,5 @@ if __name__== "__main__":
     # TraerDatos("User")
     # actualizar("User","nombre like 'isidro'","nombre='PedroAC'")
     # TraerDatos("User")
+    insertNodo("ARG11",1)
+    pass
