@@ -82,8 +82,7 @@ def insertSensor(humedad,temperatura,idNodo):
     cur =conn.cursor()
     cur.execute(comando,(humedad,temperatura,idNodo))
     conn.commit()
-    print("Nodo Sensor")
-
+    print("Sensor creado")
     conn.close()
 
 def insertNodo(nombre,idUser):
@@ -97,16 +96,17 @@ def insertNodo(nombre,idUser):
     print("Nodo creado")
     conn.close()
     
-def TraerDatos(tabla):
+def TraerDatos(columna,tabla):
     conn= sqlite3.connect(database)
     cur =conn.cursor()
     # comando=f"SELECT * FROM {tabla}"
-    comando="SELECT * FROM {}".format(tabla)
+    comando="SELECT {} FROM {}".format(columna,tabla)
     cur.execute(comando)
     datos=cur.fetchall()
     conn.commit()
     conn.close()
     print(datos)
+    return datos
 
 def readOrder(data,tabla):
     conn= sqlite3.connect(database)
@@ -133,6 +133,24 @@ def search(tabla,data):
     conn.close()
     print(datos)
 
+def existe(tabla,data):
+    conn= sqlite3.connect(database)
+    cur =conn.cursor()
+    # comando=f"SELECT * FROM {tabla} WHERE BY {data}"
+    # comando="SELECT * FROM {} WHERE name={}".format(tabla, data)
+    comando="SELECT * FROM {} WHERE {}".format(tabla,data)
+    cur.execute(comando)
+    datos=cur.fetchone()
+    print(type(datos))
+    conn.commit()
+    conn.close()
+    if datos!=None: 
+        print(datos)
+        return True
+    else:
+        return False
+    
+    
 def actualizar(tabla,data0,data1):
     conn= sqlite3.connect(database)
     cur =conn.cursor()
@@ -140,10 +158,20 @@ def actualizar(tabla,data0,data1):
     # comando="SELECT * FROM {} WHERE name={}".format(tabla, data)
     comando="UPDATE {} SET {} WHERE {}".format(tabla,data1,data0)
     cur.execute(comando)
-    datos=cur.fetchall()
+    datos=cur.fetcho()
     conn.commit()
     conn.close()
-
+    
+def comandSQL(comand):
+    conn= sqlite3.connect(database)
+    cur =conn.cursor()
+    # comando=f"SELECT * FROM {tabla} WHERE BY {data}"
+    # comando="SELECT * FROM {} WHERE name={}".format(tabla, data)
+    comando="{}".format(comand)
+    cur.execute(comando)
+    datos=cur.fetcho()
+    conn.commit()
+    conn.close()
 
 
 if __name__== "__main__":
@@ -160,5 +188,6 @@ if __name__== "__main__":
     # TraerDatos("User")
     # actualizar("User","nombre like 'isidro'","nombre='PedroAC'")
     # TraerDatos("User")
-    insertNodo("ARG11",1)
+    # insertNodo("ARG11",1)
+    existe("User","nombre='Isidr'")
     pass
